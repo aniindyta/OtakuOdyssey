@@ -1,7 +1,6 @@
 package com.anindita.otakuodyssey.ui.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,7 +25,7 @@ import coil.compose.AsyncImage
 @Composable
 fun AnimeItem(title: String, imageUrl: String, modifier: Modifier = Modifier) {
     Card (
-        modifier = modifier.width(140.dp),
+        modifier = modifier.width(120.dp),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
@@ -37,7 +36,7 @@ fun AnimeItem(title: String, imageUrl: String, modifier: Modifier = Modifier) {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(180.dp)
                     .clip(RoundedCornerShape(8.dp))
             )
             Column(modifier = Modifier.padding(8.dp).fillMaxWidth(),
@@ -46,7 +45,7 @@ fun AnimeItem(title: String, imageUrl: String, modifier: Modifier = Modifier) {
                     text = title,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
+                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
                     textAlign = TextAlign.Center
                 )
             }

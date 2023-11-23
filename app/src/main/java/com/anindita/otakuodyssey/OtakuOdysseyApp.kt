@@ -1,155 +1,87 @@
 package com.anindita.otakuodyssey
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.anindita.otakuodyssey.model.AnimeData
-import com.anindita.otakuodyssey.ui.components.AnimeItem
-import com.anindita.otakuodyssey.ui.components.DotsIndicator
-import com.anindita.otakuodyssey.ui.components.HomeSection
+import androidx.navigation.navArgument
 import com.anindita.otakuodyssey.ui.navigation.NavigationItem
 import com.anindita.otakuodyssey.ui.navigation.Screen
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
-import kotlinx.coroutines.delay
-import java.util.Random
+import com.anindita.otakuodyssey.ui.screen.all.AllScreen
+import com.anindita.otakuodyssey.ui.screen.detail.DetailScreen
+import com.anindita.otakuodyssey.ui.screen.home.HomeScreen
+import com.anindita.otakuodyssey.ui.screen.profile.ProfileScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OtakuOdysseyApp(modifier: Modifier = Modifier, navController: NavHostController = rememberNavController()) {
-    Scaffold( bottomBar = { BottomBar(navController) }, modifier = Modifier ) { innerPadding ->
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    Scaffold( bottomBar = { if (currentRoute != Screen.DetailAnime.route) {
+        BottomBar(navController)
+    } }, modifier = Modifier ) { innerPadding ->
         NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(innerPadding)) {
-//            composable(Screen.Home.route) {
-//                HomeScreen()
-//            }
-//            composable(Screen.All.route) {
-//                AllScreen()
-//            }
-//            composable(Screen.Profile.route) {
-//                ProfileScreen()
-//            }
-        }
-    }
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-fun Banner(modifier: Modifier = Modifier) {
-    val bannerImages = listOf(
-        R.drawable.a1,
-        R.drawable.a2,
-        R.drawable.a3,
-        R.drawable.a4,
-        R.drawable.a5
-    )
-
-    val pagerState = rememberPagerState(pageCount = bannerImages.size)
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(5000)
-            pagerState.animateScrollToPage((pagerState.currentPage + 1) % pagerState.pageCount)
-        }
-    }
-
-    Column(
-        modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            modifier = Modifier
-                .wrapContentSize()
-        ) {
-            HorizontalPager(
-                state = pagerState,
-                modifier = Modifier.fillMaxSize()
-            ) { currentPage ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(24.dp)
-                        .aspectRatio(1.5f),
-                    elevation = CardDefaults.cardElevation(8.dp)
-                ) {
-                    Box {
-                        Image(
-                            painter = painterResource(id = bannerImages[currentPage]),
-                            contentDescription = "",
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop
-                        )
-
-                        DotsIndicator(
-                            modifier = Modifier
-                                .padding(bottom = 8.dp, start = 8.dp, end = 8.dp)
-                                .align(Alignment.BottomCenter),
-                            pageCount = bannerImages.size,
-                            currentPage = pagerState.currentPage
-                        )
+            composable(Screen.Home.route) {
+                HomeScreen(
+                    navigateToDetail = { animeId ->
+                        navController.navigate(Screen.DetailAnime.createRoute(animeId))
                     }
-                }
+                )
+            }
+            composable(Screen.All.route) {
+                AllScreen(
+                    navigateToDetail = { animeId ->
+                        navController.navigate(Screen.DetailAnime.createRoute(animeId))
+                    }
+                )
+            }
+            composable(Screen.Profile.route) {
+                ProfileScreen()
+            }
+            composable(
+                route = Screen.DetailAnime.route,
+                arguments = listOf(navArgument("animeId") { type = NavType.StringType }),
+            ) {
+                val id = it.arguments?.getString("animeId")
+                DetailScreen(
+                    animeId = id!!,
+                    navigateBack = {
+                        navController.navigateUp()
+                    },
+                    navigateToFav = {
+
+                    }
+                )
             }
         }
     }
 }
 
 @Composable
-fun AnimeRow(modifier: Modifier = Modifier) {
-    val randomAnime = AnimeData.anime.shuffled(Random(System.currentTimeMillis())).take(5)
-
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        modifier = modifier.fillMaxWidth()
-    ) {
-        items(randomAnime) { anime ->
-            AnimeItem(title = anime.title, imageUrl = anime.imageUrl, modifier = Modifier.padding(4.dp))
-        }
-    }
-}
-
-@Composable
 private fun BottomBar(navController: NavHostController, modifier: Modifier = Modifier) {
-    NavigationBar(
-        modifier = modifier,
-    ) {
+    NavigationBar(modifier = modifier) {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
         val navigationItems = listOf(
             NavigationItem(
                 title = stringResource(R.string.menu_home),
@@ -176,34 +108,17 @@ private fun BottomBar(navController: NavHostController, modifier: Modifier = Mod
                     )
                 },
                 label = { Text(item.title) },
-                selected = false,
+                selected = currentRoute == item.screen.route,
                 onClick = {
+                    navController.navigate(item.screen.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        restoreState = true
+                        launchSingleTop = true
+                    }
                 }
             )
         }
     }
 }
-
-/*
-Box(
-modifier = modifier
-.fillMaxSize()
-.verticalScroll(rememberScrollState())
-.padding(innerPadding),
-contentAlignment = Alignment.TopStart
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        Banner()
-        HomeSection(
-            title = stringResource(R.string.section_trending),
-            content = { AnimeRow() }
-        )
-        HomeSection(
-            title = stringResource(R.string.section_terbaru),
-            content = { AnimeRow() }
-        )
-    }
-}*/

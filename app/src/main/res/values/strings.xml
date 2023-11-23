@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">OtakuOdyssey</string>
-    <string name="placeholder_search">Cari anime mu di sini!</string>
+    <string name="placeholder_search">Cari anime mu di sini</string>
     <string name="genre_all">All</string>
-    <string name="genre"></string>
     <string name="section_genre">Mau nonton apa hari ini?</string>
     <string name="section_trending">Trending</string>
     <string name="section_terbaru">Terbaru</string>
@@ -10,4 +9,5 @@
     <string name="menu_all">All Anime</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_profile">Profile</string>
+    <string name="back">Back</string>
 </resources>
