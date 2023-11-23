@@ -22,13 +22,12 @@ import com.anindita.otakuodyssey.ui.theme.OtakuOdysseyTheme
 
 @Composable
 fun FavItem(
-    animeId: String,
     title: String,
     imageUrl: String,
     desc: String,
     isFavorite: Boolean
 ) {
-    Column(
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
@@ -39,41 +38,45 @@ fun FavItem(
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
+                .width(130.dp)
+                .height(180.dp)
                 .clip(RoundedCornerShape(8.dp))
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
-        )
-
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(
-            text = desc,
-            maxLines = 3,
-            overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.End
+                .padding(start = 16.dp)
         ) {
-            Icon(
-                imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                contentDescription = "Favorite Icon",
-                tint = MaterialTheme.colorScheme.primary
+            Text(
+                text = title,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
             )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                text = desc,
+                maxLines = 6,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Icon(
+                    imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    contentDescription = "Favorite Icon",
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
         }
     }
 }
@@ -83,7 +86,6 @@ fun FavItem(
 fun FavItemPreview() {
     OtakuOdysseyTheme {
         FavItem(
-            animeId = "1",
             title = "Sample Title",
             imageUrl = "sample_image_url",
             desc = "Sample Description",

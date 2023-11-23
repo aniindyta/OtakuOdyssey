@@ -52,7 +52,8 @@ fun HomeScreen(
     viewModel: HomeViewModel = viewModel(
         factory = ViewModelFactory(Injection.provideRepository())
     ),
-    navigateToDetail: (String) -> Unit
+    navigateToDetail: (String) -> Unit,
+    navigateToFavorite: () -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
 
@@ -71,21 +72,34 @@ fun HomeScreen(
                         onQueryChange = { newQuery ->
                             searchQuery = newQuery
                             viewModel.searchAnime(newQuery)
+                        },
+                        navigateToFavorite = {
+                            navigateToFavorite()
                         }
                     )
-                    Banner()
-                    SectionText(stringResource(R.string.section_trending))
+
+                    if (searchQuery.isEmpty()) {
+                        Banner()
+                        SectionText(stringResource(R.string.section_trending))
+                    }
+
                     AnimeRowContent(
                         aboutAnime = uiState.data,
                         modifier = Modifier,
                         navigateToDetail = navigateToDetail,
                     )
-                    SectionText(stringResource(R.string.section_terbaru))
-                    AnimeRowContent(
-                        aboutAnime = uiState.data,
-                        modifier = Modifier,
-                        navigateToDetail = navigateToDetail,
-                    )
+
+                    if (searchQuery.isEmpty()) {
+                        SectionText(stringResource(R.string.section_terbaru))
+                    }
+
+                    if (searchQuery.isEmpty()) {
+                        AnimeRowContent(
+                            aboutAnime = uiState.data,
+                            modifier = Modifier,
+                            navigateToDetail = navigateToDetail,
+                        )
+                    }
                 }
             }
             is UiState.Error -> {}

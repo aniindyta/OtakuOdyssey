@@ -27,16 +27,17 @@ import com.anindita.otakuodyssey.ui.navigation.NavigationItem
 import com.anindita.otakuodyssey.ui.navigation.Screen
 import com.anindita.otakuodyssey.ui.screen.all.AllScreen
 import com.anindita.otakuodyssey.ui.screen.detail.DetailScreen
+import com.anindita.otakuodyssey.ui.screen.fav.FavScreen
 import com.anindita.otakuodyssey.ui.screen.home.HomeScreen
 import com.anindita.otakuodyssey.ui.screen.profile.ProfileScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun OtakuOdysseyApp(modifier: Modifier = Modifier, navController: NavHostController = rememberNavController()) {
+fun OtakuOdysseyApp(navController: NavHostController = rememberNavController()) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    Scaffold( bottomBar = { if (currentRoute != Screen.DetailAnime.route) {
+    Scaffold( bottomBar = { if (currentRoute != Screen.DetailAnime.route && currentRoute != Screen.Favorite.route ) {
         BottomBar(navController)
     } }, modifier = Modifier ) { innerPadding ->
         NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(innerPadding)) {
@@ -44,6 +45,9 @@ fun OtakuOdysseyApp(modifier: Modifier = Modifier, navController: NavHostControl
                 HomeScreen(
                     navigateToDetail = { animeId ->
                         navController.navigate(Screen.DetailAnime.createRoute(animeId))
+                    },
+                    navigateToFavorite = {
+                        navController.navigate(Screen.Favorite.route)
                     }
                 )
             }
@@ -51,11 +55,17 @@ fun OtakuOdysseyApp(modifier: Modifier = Modifier, navController: NavHostControl
                 AllScreen(
                     navigateToDetail = { animeId ->
                         navController.navigate(Screen.DetailAnime.createRoute(animeId))
+                    },
+                    navigateToFavorite = {
+                        navController.navigate(Screen.Favorite.route)
                     }
                 )
             }
             composable(Screen.Profile.route) {
                 ProfileScreen()
+            }
+            composable(Screen.Favorite.route) {
+                FavScreen()
             }
             composable(
                 route = Screen.DetailAnime.route,
@@ -66,9 +76,6 @@ fun OtakuOdysseyApp(modifier: Modifier = Modifier, navController: NavHostControl
                     animeId = id!!,
                     navigateBack = {
                         navController.navigateUp()
-                    },
-                    navigateToFav = {
-
                     }
                 )
             }

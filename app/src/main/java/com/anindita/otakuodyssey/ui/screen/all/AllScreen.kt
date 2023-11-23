@@ -30,7 +30,8 @@ fun AllScreen(
     viewModel: AllViewModel = viewModel(
         factory = ViewModelFactory(Injection.provideRepository())
     ),
-    navigateToDetail: (String) -> Unit
+    navigateToDetail: (String) -> Unit,
+    navigateToFavorite: () -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
 
@@ -48,6 +49,9 @@ fun AllScreen(
                         onQueryChange = { newQuery ->
                             searchQuery = newQuery
                             viewModel.searchAnime(newQuery)
+                        },
+                        navigateToFavorite = {
+                            navigateToFavorite()
                         }
                     )
                     AllAnimeContent(

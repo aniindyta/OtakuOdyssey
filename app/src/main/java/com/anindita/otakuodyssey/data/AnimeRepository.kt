@@ -12,7 +12,7 @@ class AnimeRepository {
     init {
         if (anime.isEmpty()) {
             AnimeData.anime.forEach {
-                anime.add(AboutAnime(it, true))
+                anime.add(AboutAnime(it, false))
             }
         }
     }
@@ -27,18 +27,11 @@ class AnimeRepository {
         }
     }
 
-    fun updateFavAnime(animeId: String, isFavorite: Boolean) {
-        val favAnimeToUpdate = getAnimeById(animeId)
-        favAnimeToUpdate.isFav = isFavorite
-    }
-
-    fun getAddedFavAnime(): Flow<List<AboutAnime>> {
-        return getAllAnime()
-            .map { animes ->
-                animes.filter { anime ->
-                    anime.isFav
-                }
-            }
+    fun updateAnime(aboutAnime: AboutAnime) {
+        val index = anime.indexOfFirst { it.anime.id == aboutAnime.anime.id }
+        if (index != -1) {
+            anime[index] = aboutAnime
+        }
     }
 
     fun searchAnime(query: String): Flow<List<AboutAnime>> {
@@ -48,6 +41,14 @@ class AnimeRepository {
                     anime.anime.title.contains(query, ignoreCase = true)
                 }
             }
+    }
+
+    fun getFavoriteAnime(): Flow<List<AboutAnime>> {
+        return getAllAnime().map { animes ->
+            animes.filter { anime ->
+                anime.isFav
+            }
+        }
     }
 
     companion object {

@@ -3,6 +3,7 @@ package com.anindita.otakuodyssey.ui.components
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -17,6 +18,7 @@ import com.anindita.otakuodyssey.R
 fun SearchBar(
     query: String,
     onQueryChange: (String) -> Unit,
+    navigateToFavorite: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     SearchBar(
@@ -31,6 +33,18 @@ fun SearchBar(
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
+        },
+        trailingIcon = {
+            IconButton(
+                onClick = {
+                    navigateToFavorite()
+                },
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = null
+                )
+            }
         },
         placeholder = {
             Text(stringResource(R.string.placeholder_search))
