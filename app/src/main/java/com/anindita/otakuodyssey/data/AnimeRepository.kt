@@ -1,7 +1,7 @@
 package com.anindita.otakuodyssey.data
 
-import com.anindita.otakuodyssey.model.AnimeData
 import com.anindita.otakuodyssey.model.AboutAnime
+import com.anindita.otakuodyssey.model.AnimeData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
