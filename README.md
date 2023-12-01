@@ -25,7 +25,7 @@ In crafting this project, various essential elements were incorporated, includin
 ## Showcase
 | Action | Preview |
 | :-: | :-: |
-| Home Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/efa15e26-6a4a-4a6d-b4f3-8ce8d3a3ef1c.jpg" width=50% height=50%> <img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/1bec7040-8b17-4c6c-bdda-ad325047059d.jpg" width=50% height=50%>|
+| Home Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/efa15e26-6a4a-4a6d-b4f3-8ce8d3a3ef1c.jpg" width=50% height=50%>|<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/1bec7040-8b17-4c6c-bdda-ad325047059d.jpg" width=50% height=50%>|
 | All Anime Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/2452c6dc-e863-4569-a79b-28961601d1ee.jpg" width=50% height=50%>|
 | Detail Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/75a9c5ad-7635-4cfc-81f2-8e1999a599da.jpg" width=50% height=50%>|
 | My Favorite Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/8da9715e-af8d-428c-a736-c2c9d448cac1.jpg" width=50% height=50%>|
