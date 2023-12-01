@@ -103,7 +103,6 @@ fun DetailContent(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = stringResource(R.string.back),
                     modifier = Modifier
-                        .padding(16.dp)
                         .clickable { onBackClick() }
                 )
 
