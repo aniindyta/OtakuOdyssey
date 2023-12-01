@@ -3,10 +3,9 @@ package com.anindita.otakuodyssey.ui.screen.detail
 import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,7 +16,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -78,34 +76,6 @@ fun DetailScreen(
     }
 }
 
-
-@Composable
-fun FavoriteFloatingActionButton(
-    isFavorite: Boolean,
-    onFavoriteClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val icon = if (isFavorite) {
-        Icons.Default.Favorite
-    } else {
-        Icons.Default.FavoriteBorder
-    }
-
-    ExtendedFloatingActionButton(
-        icon = {
-            Icon(
-                imageVector = icon,
-                contentDescription = null
-            )
-        },
-        text = {
-
-        },
-        onClick = { onFavoriteClick() },
-        modifier = modifier
-    )
-}
-
 @Composable
 fun DetailContent(
     @SuppressLint("SupportAnnotationUsage") @DrawableRes
@@ -123,13 +93,27 @@ fun DetailContent(
                 .verticalScroll(rememberScrollState())
                 .weight(1f)
         ) {
-            Box {
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
                     contentDescription = stringResource(R.string.back),
                     modifier = Modifier
                         .padding(16.dp)
                         .clickable { onBackClick() }
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Icon(
+                    imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clickable { onFavoriteClick() }
                 )
             }
             Column(
@@ -160,14 +144,6 @@ fun DetailContent(
                         fontWeight = FontWeight.Medium
                     ),
                     textAlign = TextAlign.Justify
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                FavoriteFloatingActionButton(
-                    isFavorite = isFavorite,
-                    onFavoriteClick = onFavoriteClick,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
                 )
             }
         }
