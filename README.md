@@ -23,10 +23,13 @@ In crafting this project, various essential elements were incorporated, includin
 - [x] ...and much more!
 
 ## Showcase
-| Action | Preview |
-| :-: | :-: |
-| Home Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/efa15e26-6a4a-4a6d-b4f3-8ce8d3a3ef1c.jpg" width=50% height=50%>|<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/1bec7040-8b17-4c6c-bdda-ad325047059d.jpg" width=50% height=50%>|
-| All Anime Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/2452c6dc-e863-4569-a79b-28961601d1ee.jpg" width=50% height=50%>|
-| Detail Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/75a9c5ad-7635-4cfc-81f2-8e1999a599da.jpg" width=50% height=50%>|
-| My Favorite Screen |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/8da9715e-af8d-428c-a736-c2c9d448cac1.jpg" width=50% height=50%>|
-| Search Feature |<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/221e0497-4edf-484f-a1ea-5638839da6a3" width=50% height=50%> <img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/1e7e397e-d815-45b8-acf1-2591644c071a.jpg" width=50% height=50%>|
+|Home Screen|All Anime Screen|Detail Screen|
+|--|--|--|
+|<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/efa15e26-6a4a-4a6d-b4f3-8ce8d3a3ef1c.jpg">|<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/2452c6dc-e863-4569-a79b-28961601d1ee.jpg">|<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/75a9c5ad-7635-4cfc-81f2-8e1999a599da.jpg">|
+
+|My Favorite Screen|Search Feature|
+|--|--|
+|<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/8da9715e-af8d-428c-a736-c2c9d448cac1.jpg">|<img src="https://github.com/aniindyta/OtakuOdyssey/assets/87638112/221e0497-4edf-484f-a1ea-5638839da6a3">|
+
+## Possible Improvement
+I plan to develop this application by leveraging the API provided in the following documentation: https://docs.consumet.org/. This API will enable the application to showcase a variety of anime along with their respective genres. The primary objective of this application is not only to provide a comprehensive overview of the abundance of anime but also to empower users to watch anime directly. With a strong focus on the diversity of anime and the ability to explore based on genres, the goal is for this application to offer an enjoyable experience for users who seek an easier and more comprehensive exploration of the anime world. Additionally, future improvements will be directed towards integrating direct watching functionality to meet the needs of users who want to access anime content without switching to other streaming platforms.
