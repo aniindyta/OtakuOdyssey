@@ -1,4 +1,4 @@
-![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/25813b42-0980-40a2-8999-da301d32d3ee)<h1 align="center">
+<h1 align="center">
   Otaku Odyssey
 </h1>
 <p align="center">
@@ -25,7 +25,7 @@ In crafting this project, various essential elements were incorporated, includin
 ## Showcase
 | Action | Preview |
 | :-: | :-: |
-| Home Screen |![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/efa15e26-6a4a-4a6d-b4f3-8ce8d3a3ef1c) ![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/1bec7040-8b17-4c6c-bdda-ad325047059d)|
+| Home Screen |<div style="width: 60%; height: 60%">![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/efa15e26-6a4a-4a6d-b4f3-8ce8d3a3ef1c) ![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/1bec7040-8b17-4c6c-bdda-ad325047059d </div> )|
 | All Anime Screen |![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/2452c6dc-e863-4569-a79b-28961601d1ee)|
 | Detail Screen |![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/75a9c5ad-7635-4cfc-81f2-8e1999a599da)|
 | My Favorite Screen |![image](https://github.com/aniindyta/OtakuOdyssey/assets/87638112/8da9715e-af8d-428c-a736-c2c9d448cac1)|
